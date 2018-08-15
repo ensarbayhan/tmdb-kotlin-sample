@@ -1,42 +1,59 @@
 package com.ensar.tmdbkotlin.di.module
 
 import android.os.Environment
+import com.ensar.tmdbkotlin.BuildConfig
+import com.ensar.tmdbkotlin.db.remote.MovieService
+import com.google.gson.FieldNamingPolicy
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
-import okhttp3.OkHttpClient
-import javax.inject.Named
-import javax.inject.Singleton
 import okhttp3.Cache
-import java.util.concurrent.TimeUnit
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.Retrofit
-import com.google.gson.Gson
-import com.google.gson.FieldNamingPolicy
-import com.google.gson.GsonBuilder
+import java.util.concurrent.TimeUnit
+import javax.inject.Named
+import javax.inject.Singleton
 
 
 @Module
 class NetModule {
+
+    @Provides
+    @Singleton
+    fun provideInterceptor(): Interceptor {
+        return Interceptor { chain ->
+            var request = chain.request()
+            val url = request.url()!!.newBuilder()?.addQueryParameter("api_key", BuildConfig.API_KEY)?.build()
+            request = request.newBuilder().url(url!!).build()
+            chain.proceed(request)
+        }
+    }
+
     @Singleton
     @Provides
     @Named("cached")
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideOkHttpClient(interceptor: Interceptor): OkHttpClient {
         val cache = Cache(Environment.getDownloadCacheDirectory(), 10 * 1024 * 1024)
         return OkHttpClient.Builder()
                 .readTimeout(1, TimeUnit.MINUTES)
                 .writeTimeout(1, TimeUnit.MINUTES)
                 .cache(cache)
+                .addInterceptor(interceptor)
                 .build()
     }
 
     @Singleton
     @Provides
     @Named("non_cached")
-    fun provideNonCachedOkHttpClient(): OkHttpClient {
+    fun provideNonCachedOkHttpClient(interceptor: Interceptor): OkHttpClient {
         return OkHttpClient.Builder()
                 .readTimeout(1, TimeUnit.MINUTES)
                 .writeTimeout(1, TimeUnit.MINUTES)
+                .addInterceptor(interceptor)
                 .build()
     }
 
@@ -57,15 +74,13 @@ class NetModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
     }
 
-    /**
-     * Example service
-     */
-    /*@Provides
+    @Provides
     @Singleton
-    WordpressService provideService(Retrofit.Builder builder) {
-        return builder.baseUrl(BuildConfig.API_URL)
+    fun provideService(builder : Retrofit.Builder) : MovieService {
+        return builder
+                .baseUrl(BuildConfig.API_URL)
                 .build()
-                .create(WordpressService.class);
+                .create(MovieService::class.java)
     }
-    */
+
 }

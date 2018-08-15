@@ -87,6 +87,8 @@ ext{
     picasso = "com.squareup.picasso:picasso:$picassoVersion"
 
     buildTime = new Date().format("yyyy-MM-dd'T'HH:mm'Z'", TimeZone.getTimeZone("UTC"))
+    apiUrl = "https://api.themoviedb.org/3/"
+    apiKey = "698cc9dec7567ba24975a472edc23b68"
 }
 
 

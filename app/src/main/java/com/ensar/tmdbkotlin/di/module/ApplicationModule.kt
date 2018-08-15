@@ -11,7 +11,6 @@ import javax.inject.Singleton
 @Module
 class ApplicationModule(var app: App) {
 
-
     @Provides
     @Singleton
     fun provideApp(): App = app

@@ -14,6 +14,8 @@ apply plugin: 'kotlin-kapt'
 
 def STRING = 'String'
 def BUILD_TIME = 'BUILD_TIME'
+def API_URL = 'API_URL'
+def API_KEY = 'API_KEY'
 
 apply plugin: 'io.fabric'
 
@@ -33,6 +35,8 @@ android {
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField STRING, BUILD_TIME, "\"${rootProject.ext.buildTime}\""
+        buildConfigField STRING, API_URL, "\"${rootProject.ext.apiUrl}\""
+        buildConfigField STRING, API_KEY, "\"${rootProject.ext.apiKey}\""
     }
     buildTypes {
         release {
