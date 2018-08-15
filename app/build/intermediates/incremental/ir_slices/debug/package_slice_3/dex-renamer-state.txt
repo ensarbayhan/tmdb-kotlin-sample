@@ -1,0 +1,4 @@
+#Wed Aug 15 15:46:16 EET 2018
+base.0=/Users/a90016439mac/Desktop/Projects/tmdb-kotlin-sample/app/build/intermediates/transforms/dexMerger/debug/3
+path.0=classes.dex
+renamed.0=classes.dex
