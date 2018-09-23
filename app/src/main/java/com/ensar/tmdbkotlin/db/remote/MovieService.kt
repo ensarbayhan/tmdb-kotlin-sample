@@ -12,5 +12,5 @@ import retrofit2.http.Path
 interface MovieService {
 
     @GET("movie/{id}")
-    fun getMovie(@Path("id") id: Int): Observable<Movie>
+    fun getMovie(@Path("id") id: Long): Observable<Movie>
 }

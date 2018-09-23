@@ -1,14 +1,26 @@
 package com.ensar.tmdbkotlin
 
-import com.ensar.tmdbkotlin.di.component.DaggerApplicationComponent
-import com.ensar.tmdbkotlin.di.module.ApplicationModule
+import android.app.Activity
+import android.app.Application
+import com.ensar.tmdbkotlin.di.DaggerAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import javax.inject.Inject
 
-class App : android.app.Application() {
+class App : Application(), HasActivityInjector {
 
-    val component by lazy {
-        DaggerApplicationComponent.builder()
-                .applicationModule(ApplicationModule(this))
+    @Inject
+    lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+
+    override fun onCreate() {
+        super.onCreate()
+
+        DaggerAppComponent.builder()
+                .application(this)
                 .build()
+                .inject(this)
     }
-}
 
+    override fun activityInjector(): AndroidInjector<Activity> = activityDispatchingAndroidInjector
+}

@@ -3,6 +3,7 @@ package com.ensar.tmdbkotlin.db.local.dao
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import com.ensar.tmdbkotlin.db.entities.Movie
+import io.reactivex.Single
 
 /**
  * Created by Ensar Bayhan on 8/15/2018.
@@ -15,7 +16,7 @@ interface MovieDao {
     fun getMovies(): LiveData<List<Movie>>
 
     @Query("SELECT * FROM Movie where id = :id")
-    fun getMovie(id: Long): Movie
+    fun getMovie(id: Long): Single<Movie>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMovie(example: Movie)
