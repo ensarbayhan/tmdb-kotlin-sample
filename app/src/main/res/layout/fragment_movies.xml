@@ -2,19 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--<data>-->
-        <!--<variable-->
-            <!--name="viewModel"-->
-            <!--type="com.ensar.tmdbkotlin.ui.movielist.MovieListViewModel" />-->
-    <!--</data>-->
-
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/movies_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="LinearLayoutManager" />
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
     </android.support.constraint.ConstraintLayout>
 </layout>

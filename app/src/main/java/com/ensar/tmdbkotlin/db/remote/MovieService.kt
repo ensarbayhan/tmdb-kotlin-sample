@@ -13,4 +13,7 @@ interface MovieService {
 
     @GET("movie/{id}")
     fun getMovie(@Path("id") id: Long): Observable<Movie>
+
+    @GET("movie/popular")
+    fun getMovies(): Observable<List<Movie>>
 }

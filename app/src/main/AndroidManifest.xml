@@ -20,11 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <!--TODO:put your fabric api key here-->
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value=""  />
 
     </application>
 

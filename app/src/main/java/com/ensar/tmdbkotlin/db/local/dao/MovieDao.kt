@@ -1,6 +1,5 @@
 package com.ensar.tmdbkotlin.db.local.dao
 
-import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import com.ensar.tmdbkotlin.db.entities.Movie
 import io.reactivex.Single
@@ -13,13 +12,16 @@ import io.reactivex.Single
 interface MovieDao {
 
     @Query("SELECT * FROM Movie")
-    fun getMovies(): LiveData<List<Movie>>
+    fun getMovies(): Single<List<Movie>>
 
     @Query("SELECT * FROM Movie where id = :id")
     fun getMovie(id: Long): Single<Movie>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMovie(example: Movie)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertMovies(example: List<Movie>)
 
     @Update
     fun updateMovie(example: Movie)
