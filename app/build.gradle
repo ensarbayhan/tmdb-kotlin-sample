@@ -6,6 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 def STRING = 'String'
 def BUILD_TIME = 'BUILD_TIME'
 def API_URL = 'API_URL'
+def IMAGE_URL = 'IMAGE_URL'
 def API_KEY = 'API_KEY'
 
 repositories {
@@ -14,6 +15,7 @@ repositories {
 
 android {
     compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         applicationId "com.ensar.tmdbkotlin"
@@ -24,6 +26,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField STRING, BUILD_TIME, "\"${rootProject.ext.buildTime}\""
         buildConfigField STRING, API_URL, "\"${rootProject.ext.apiUrl}\""
+        buildConfigField STRING, IMAGE_URL, "\"${rootProject.ext.imageUrl}\""
+        buildConfigField STRING, API_KEY, "\"${rootProject.ext.apiKey}\""
         buildConfigField STRING, API_KEY, "\"${rootProject.ext.apiKey}\""
     }
     buildTypes {
@@ -35,6 +39,11 @@ android {
 
     dataBinding {
         enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -91,7 +100,7 @@ dependencies {
     implementation "android.arch.paging:runtime:$pagingVersion"
 
     // data binding
-    kapt "com.android.databinding:compiler:3.1.4"
+    kapt "androidx.databinding:databinding-compiler:3.2.0"
 
     //test
     testImplementation 'junit:junit:4.12'

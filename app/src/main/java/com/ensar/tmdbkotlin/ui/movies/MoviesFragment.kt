@@ -37,7 +37,10 @@ class MoviesFragment : Fragment(), MoviesAdapter.OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_movies, container, false)
-        viewModel.moviesLiveData.observe(this, Observer { adapter.submitList(it) })
+        viewModel.moviesLiveData.observe(this, Observer {
+            adapter.submitList(it)
+            adapter.notifyDataSetChanged()
+        })
         return view
     }
 
@@ -47,6 +50,6 @@ class MoviesFragment : Fragment(), MoviesAdapter.OnClickListener {
     }
 
     override fun onItemClicked(view: View, item: Movie) {
-        activity?.toast(item.title + "clicked")
+        toast(item.title + "clicked")
     }
 }

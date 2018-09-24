@@ -24,14 +24,19 @@ class MovieRepository @Inject constructor(private val remote: MovieService, priv
                 .toObservable()
                 .doOnNext {
                     Timber.d("Dispatching ${it.size} from DB...")
+                }.doOnError {
+                    Timber.d("Error!!!!%s", it.message)
                 }
     }
 
     private fun getMoviesFromApi(): Observable<List<Movie>> {
         return remote.getMovies()
+                .map { it.movies }
                 .doOnNext {
                     Timber.d("Dispatching ${it.size} from API...")
                     storeMoviesInDb(it)
+                }.doOnError {
+                    Timber.d("Error!!!!%s", it.message)
                 }
     }
 
@@ -47,7 +52,7 @@ class MovieRepository @Inject constructor(private val remote: MovieService, priv
 
     fun getMovie(id: Long): Observable<Movie> {
         return Observable.concatArray(
-//                getMovieFromDb(id),
+                getMovieFromDb(id),
                 getMovieFromApi(id))
     }
 

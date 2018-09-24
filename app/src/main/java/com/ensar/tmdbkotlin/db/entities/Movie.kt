@@ -15,17 +15,17 @@ data class Movie(
         @PrimaryKey
         @SerializedName("id")
         @Expose
-        var id: Int = 0,
+        var id: Int? = 0,
 
         @SerializedName("title")
         @Expose
-        var title: String = "",
+        var title: String? = "",
 
         @SerializedName("backdrop_path")
         @Expose
-        var backdrop_path: String = "",
+        var backdrop_path: String? = "",
 
         @SerializedName("poster_path")
         @Expose
-        var poster_path: String = ""
+        var poster_path: String? = ""
 )
