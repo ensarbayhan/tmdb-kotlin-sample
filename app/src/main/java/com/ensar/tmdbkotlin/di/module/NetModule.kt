@@ -11,6 +11,7 @@ import dagger.Provides
 import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -33,27 +34,37 @@ class NetModule {
         }
     }
 
+    @Provides
+    @Singleton
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
+        val logging = HttpLoggingInterceptor()
+        logging.level = HttpLoggingInterceptor.Level.BODY
+        return logging
+    }
+
     @Singleton
     @Provides
     @Named("cached")
-    fun provideOkHttpClient(interceptor: Interceptor): OkHttpClient {
+    fun provideOkHttpClient(interceptor: Interceptor, httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         val cache = Cache(Environment.getDownloadCacheDirectory(), 10 * 1024 * 1024)
         return OkHttpClient.Builder()
                 .readTimeout(1, TimeUnit.MINUTES)
                 .writeTimeout(1, TimeUnit.MINUTES)
                 .cache(cache)
                 .addInterceptor(interceptor)
+                .addInterceptor(httpLoggingInterceptor)
                 .build()
     }
 
     @Singleton
     @Provides
     @Named("non_cached")
-    fun provideNonCachedOkHttpClient(interceptor: Interceptor): OkHttpClient {
+    fun provideNonCachedOkHttpClient(interceptor: Interceptor, httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
                 .readTimeout(1, TimeUnit.MINUTES)
                 .writeTimeout(1, TimeUnit.MINUTES)
                 .addInterceptor(interceptor)
+                .addInterceptor(httpLoggingInterceptor)
                 .build()
     }
 
@@ -76,7 +87,7 @@ class NetModule {
 
     @Provides
     @Singleton
-    fun provideService(builder : Retrofit.Builder) : MovieService {
+    fun provideService(builder: Retrofit.Builder): MovieService {
         return builder
                 .baseUrl(BuildConfig.API_URL)
                 .build()

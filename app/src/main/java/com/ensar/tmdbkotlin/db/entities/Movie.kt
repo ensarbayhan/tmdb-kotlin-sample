@@ -11,21 +11,31 @@ import com.google.gson.annotations.SerializedName
 
 @Entity()
 data class Movie(
-
         @PrimaryKey
         @SerializedName("id")
         @Expose
-        var id: Int? = 0,
+        var id: Int?,
 
         @SerializedName("title")
         @Expose
-        var title: String? = "",
+        var title: String?,
+
+        @SerializedName("vote_average")
+        @Expose
+        var voteAverage: String?,
 
         @SerializedName("backdrop_path")
         @Expose
-        var backdrop_path: String? = "",
+        var backdropPath: String?,
+
+        @SerializedName("release_date")
+        @Expose
+        var releaseDate: String?,
+
+        @SerializedName("overview")
+        @Expose
+        var overview: String?,
 
         @SerializedName("poster_path")
         @Expose
-        var poster_path: String? = ""
-)
+        var posterPath: String?)

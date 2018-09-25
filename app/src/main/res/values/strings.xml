@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Tmdb Kotlin Sample</string>
-    <string name="position" translatable="false">position</string>
-    <string name="title">Title</string>
+
+    <string name="movie_title">%1$s (%2$s)</string>
 </resources>

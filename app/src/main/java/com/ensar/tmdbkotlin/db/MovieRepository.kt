@@ -14,8 +14,8 @@ import javax.inject.Inject
 class MovieRepository @Inject constructor(private val remote: MovieService, private val local: AppDatabase) {
     fun getMovies(): Observable<List<Movie>> {
         return Observable.concatArray(
-                getMoviesFromApi(),
-                getMoviesFromDb()
+                getMoviesFromDb(),
+                getMoviesFromApi()
         )
     }
 

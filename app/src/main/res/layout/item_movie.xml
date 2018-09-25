@@ -17,29 +17,70 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:onClick="@{(v)-> listener.onItemClicked(v,item)}">
 
         <ImageView
             android:id="@+id/movie_image"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@{item.poster_path}"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:src="@{item.posterPath}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/movie_title"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/poster_demo" />
 
         <TextView
             android:id="@+id/movie_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:text="@{item.title}"
-            android:gravity="start"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/movie_image"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Movie" />
 
-    </android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/movie_year"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/movie_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_title"
+            tools:text="2018" />
 
+        <ImageView
+            android:id="@+id/movie_rate_star"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_star_black_24dp"
+            app:layout_constraintLeft_toRightOf="@+id/movie_image"
+            app:layout_constraintTop_toBottomOf="@+id/movie_year" />
+
+        <TextView
+            android:id="@+id/movie_rate"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center_vertical"
+            android:text="@{item.voteAverage}"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/movie_rate_star"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_year"
+            tools:text="9.7" />
+    </android.support.constraint.ConstraintLayout>
 </layout>

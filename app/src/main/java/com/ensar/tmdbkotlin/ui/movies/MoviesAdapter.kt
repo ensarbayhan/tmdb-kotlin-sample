@@ -33,6 +33,7 @@ class MoviesAdapter(private val listener: OnClickListener) :
                            private val listener: OnClickListener) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(item: Movie) {
             itemBinding.item = item
+            itemBinding.movieYear.text = item.releaseDate?.split("-")?.get(0)
             itemBinding.listener = listener
             itemBinding.executePendingBindings()
         }
