@@ -57,6 +57,17 @@
             app:layout_constraintTop_toBottomOf="@+id/movie_title"
             tools:text="2018" />
 
+        <TextView
+            android:id="@+id/movie_genres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintLeft_toRightOf="@+id/movie_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_year"
+            tools:text="Anime, Action, Comedy" />
+
         <ImageView
             android:id="@+id/movie_rate_star"
             android:layout_width="24dp"
@@ -65,22 +76,24 @@
             android:layout_marginTop="5dp"
             android:src="@drawable/ic_star_black_24dp"
             app:layout_constraintLeft_toRightOf="@+id/movie_image"
-            app:layout_constraintTop_toBottomOf="@+id/movie_year" />
+            app:layout_constraintTop_toBottomOf="@+id/movie_genres" />
 
         <TextView
             android:id="@+id/movie_rate"
             android:layout_width="0dp"
-            android:layout_height="25dp"
+            android:layout_height="0dp"
             android:layout_marginStart="2dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="10dp"
             android:gravity="center_vertical"
             android:text="@{item.voteAverage}"
-            android:textSize="14sp"
+            android:textSize="15sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/movie_rate_star"
             app:layout_constraintLeft_toRightOf="@+id/movie_rate_star"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movie_year"
+            app:layout_constraintTop_toTopOf="@+id/movie_rate_star"
             tools:text="9.7" />
+
     </android.support.constraint.ConstraintLayout>
 </layout>

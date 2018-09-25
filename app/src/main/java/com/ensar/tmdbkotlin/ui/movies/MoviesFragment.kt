@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ensar.tmdbkotlin.R
+import com.ensar.tmdbkotlin.db.entities.Genre
 import com.ensar.tmdbkotlin.db.entities.Movie
 import com.ensar.tmdbkotlin.utils.toast
 import dagger.android.support.AndroidSupportInjection
@@ -23,12 +24,12 @@ import javax.inject.Inject
 
 class MoviesFragment : Fragment(), MoviesAdapter.OnClickListener {
 
+    private lateinit var viewModel: MoviesViewModel
+    private lateinit var adapter: MoviesAdapter
+    private var genres: List<Genre>? = null
+
     @Inject
     lateinit var viewModelFactory: MoviesViewModelFactory
-
-    private lateinit var viewModel: MoviesViewModel
-
-    private lateinit var adapter: MoviesAdapter
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -41,6 +42,10 @@ class MoviesFragment : Fragment(), MoviesAdapter.OnClickListener {
         val view = inflater.inflate(R.layout.fragment_movies, container, false)
         viewModel.moviesLiveData.observe(this, Observer {
             adapter.submitList(it)
+            adapter.notifyDataSetChanged()
+        })
+        viewModel.genresLiveData.observe(this, Observer {
+            adapter.genres = it
             adapter.notifyDataSetChanged()
         })
         return view

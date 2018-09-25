@@ -4,19 +4,15 @@ import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
-import com.ensar.tmdbkotlin.db.entities.Movie
+import com.ensar.tmdbkotlin.db.entities.Genre
 import io.reactivex.Single
 
-/**
- * Created by Ensar Bayhan on 8/15/2018.
- */
-
 @Dao
-interface MovieDao {
+interface GenreDao {
 
-    @Query("SELECT * FROM Movie")
-    fun getMovies(): Single<List<Movie>>
+    @Query("SELECT * FROM Genre")
+    fun getGenres(): Single<List<Genre>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovies(example: List<Movie>)
+    fun insertGenres(example: List<Genre>)
 }

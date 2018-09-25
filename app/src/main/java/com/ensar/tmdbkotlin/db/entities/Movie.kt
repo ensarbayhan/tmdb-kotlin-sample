@@ -2,6 +2,8 @@ package com.ensar.tmdbkotlin.db.entities
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
+import android.arch.persistence.room.TypeConverters
+import com.ensar.tmdbkotlin.db.GenreTypeConverters
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -23,6 +25,11 @@ data class Movie(
         @SerializedName("vote_average")
         @Expose
         var voteAverage: String?,
+
+        @SerializedName("genre_ids")
+        @Expose
+        @TypeConverters(GenreTypeConverters::class)
+        var genreIds: List<Int>,
 
         @SerializedName("backdrop_path")
         @Expose

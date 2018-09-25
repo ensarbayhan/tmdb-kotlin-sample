@@ -1,5 +1,6 @@
 package com.ensar.tmdbkotlin.db.remote
 
+import com.ensar.tmdbkotlin.db.entities.Genre
 import com.ensar.tmdbkotlin.db.entities.Movie
 import com.ensar.tmdbkotlin.db.entities.MoviesResponse
 import io.reactivex.Observable
@@ -17,4 +18,7 @@ interface MovieService {
 
     @GET("movie/popular")
     fun getMovies(): Observable<MoviesResponse>
+
+    @GET("genre/movie/list")
+    fun getGenres(): Observable<List<Genre>>
 }
