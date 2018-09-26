@@ -38,7 +38,7 @@ class MoviesAdapter(private val listener: OnClickListener) :
             itemBinding.executePendingBindings()
             var genreText = ""
             if (genres != null) {
-                item.genreIds!!.forEach { genreId ->
+                item.genreIds.forEach { genreId ->
                     genres.forEach {
                         if (it.id == genreId) {
                             genreText += it.name + ", "

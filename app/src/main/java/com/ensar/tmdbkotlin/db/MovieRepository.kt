@@ -2,7 +2,7 @@ package com.ensar.tmdbkotlin.db
 
 import com.ensar.tmdbkotlin.db.entities.Movie
 import com.ensar.tmdbkotlin.db.local.AppDatabase
-import com.ensar.tmdbkotlin.db.remote.MovieService
+import com.ensar.tmdbkotlin.db.remote.AppService
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
@@ -11,7 +11,7 @@ import javax.inject.Inject
 /**
  * Created by Ensar Bayhan on 9/18/2018.
  */
-class MovieRepository @Inject constructor(private val remote: MovieService, private val local: AppDatabase) {
+class MovieRepository @Inject constructor(private val remote: AppService, private val local: AppDatabase) {
     fun getMovies(): Observable<List<Movie>> {
         return Observable.concatArray(
                 getMoviesFromDb(),

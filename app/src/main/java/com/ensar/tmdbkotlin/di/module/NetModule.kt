@@ -2,7 +2,7 @@ package com.ensar.tmdbkotlin.di.module
 
 import android.os.Environment
 import com.ensar.tmdbkotlin.BuildConfig
-import com.ensar.tmdbkotlin.db.remote.MovieService
+import com.ensar.tmdbkotlin.db.remote.AppService
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -87,11 +87,11 @@ class NetModule {
 
     @Provides
     @Singleton
-    fun provideService(builder: Retrofit.Builder): MovieService {
+    fun provideService(builder: Retrofit.Builder): AppService {
         return builder
                 .baseUrl(BuildConfig.API_URL)
                 .build()
-                .create(MovieService::class.java)
+                .create(AppService::class.java)
     }
 
 }

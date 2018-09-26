@@ -2,13 +2,13 @@ package com.ensar.tmdbkotlin.db
 
 import com.ensar.tmdbkotlin.db.entities.Genre
 import com.ensar.tmdbkotlin.db.local.AppDatabase
-import com.ensar.tmdbkotlin.db.remote.MovieService
+import com.ensar.tmdbkotlin.db.remote.AppService
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
-class GenreRepository @Inject constructor(private val remote: MovieService, private val local: AppDatabase) {
+class GenreRepository @Inject constructor(private val remote: AppService, private val local: AppDatabase) {
 
     fun getGenres(): Observable<List<Genre>> {
         return Observable.concatArray(
@@ -29,6 +29,7 @@ class GenreRepository @Inject constructor(private val remote: MovieService, priv
 
     private fun getGenresFromApi(): Observable<List<Genre>> {
         return remote.getGenres()
+                .map { it.genres }
                 .doOnNext {
                     Timber.d("Dispatching ${it.size} from API...")
                     storeGenresInDb(it)

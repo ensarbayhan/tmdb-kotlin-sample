@@ -21,6 +21,7 @@ class MoviesViewModel(private val repository: MoviesRepository) : ViewModel() {
 
     init {
         getMovies()
+        getGenres()
     }
 
     private fun getMovies() {
@@ -30,6 +31,9 @@ class MoviesViewModel(private val repository: MoviesRepository) : ViewModel() {
                 .subscribe {
                     moviesLiveData.postValue(it)
                 })
+    }
+
+    private fun getGenres() {
         disposable.add(repository.getGenres()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
