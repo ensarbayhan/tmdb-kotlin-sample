@@ -21,7 +21,7 @@ class MainActivity : DaggerAppCompatActivity() {
         startMoviesFragment()
     }
 
-    fun startMoviesFragment() {
+    private fun startMoviesFragment() {
         val fragment = MoviesFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container, fragment)

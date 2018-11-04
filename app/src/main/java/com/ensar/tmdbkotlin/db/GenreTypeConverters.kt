@@ -15,9 +15,7 @@ class GenreTypeConverters {
             return Collections.emptyList()
         }
 
-        val listType = object : TypeToken<List<Int>>() {
-
-        }.type
+        val listType = object : TypeToken<List<Int>>() {}.type
 
         return gson.fromJson<List<Int>>(data, listType)
     }
