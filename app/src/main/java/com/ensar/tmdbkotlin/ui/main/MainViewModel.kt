@@ -1,6 +1,6 @@
 package com.ensar.tmdbkotlin.ui.main
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 
 
 class MainViewModel : ViewModel()

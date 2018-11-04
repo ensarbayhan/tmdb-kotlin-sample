@@ -1,11 +1,11 @@
 package com.ensar.tmdbkotlin.utils
 
 import android.app.Activity
-import android.databinding.BindingAdapter
-import android.support.v4.app.Fragment
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.databinding.BindingAdapter
+import androidx.fragment.app.Fragment
 import com.ensar.tmdbkotlin.BuildConfig
 import com.squareup.picasso.Picasso
 

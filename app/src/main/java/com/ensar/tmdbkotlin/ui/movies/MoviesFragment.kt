@@ -1,17 +1,16 @@
 package com.ensar.tmdbkotlin.ui.movies
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ensar.tmdbkotlin.R
-import com.ensar.tmdbkotlin.db.entities.Genre
 import com.ensar.tmdbkotlin.db.entities.Movie
 import com.ensar.tmdbkotlin.utils.toast
 import dagger.android.support.AndroidSupportInjection
@@ -26,7 +25,6 @@ class MoviesFragment : Fragment(), MoviesAdapter.OnClickListener {
 
     private lateinit var viewModel: MoviesViewModel
     private lateinit var adapter: MoviesAdapter
-    private var genres: List<Genre>? = null
 
     @Inject
     lateinit var viewModelFactory: MoviesViewModelFactory

@@ -1,7 +1,7 @@
 package com.ensar.tmdbkotlin.ui.movies
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.ensar.tmdbkotlin.db.entities.Genre
 import com.ensar.tmdbkotlin.db.entities.Movie
 import io.reactivex.android.schedulers.AndroidSchedulers

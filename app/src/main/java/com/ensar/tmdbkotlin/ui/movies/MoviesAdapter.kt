@@ -1,11 +1,11 @@
 package com.ensar.tmdbkotlin.ui.movies
 
-import android.databinding.DataBindingUtil
-import android.support.v7.recyclerview.extensions.ListAdapter
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.ensar.tmdbkotlin.R
 import com.ensar.tmdbkotlin.databinding.ItemMovieBinding
 import com.ensar.tmdbkotlin.db.entities.Genre

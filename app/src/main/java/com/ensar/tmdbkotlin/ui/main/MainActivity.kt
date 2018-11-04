@@ -1,7 +1,7 @@
 package com.ensar.tmdbkotlin.ui.main
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProviders
 import com.ensar.tmdbkotlin.R
 import com.ensar.tmdbkotlin.ui.movies.MoviesFragment
 import dagger.android.support.DaggerAppCompatActivity

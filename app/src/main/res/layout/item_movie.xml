@@ -14,7 +14,7 @@
             type="com.ensar.tmdbkotlin.ui.movies.MoviesAdapter.OnClickListener" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -95,5 +95,5 @@
             app:layout_constraintTop_toTopOf="@+id/movie_rate_star"
             tools:text="9.7" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
