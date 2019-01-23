@@ -9,15 +9,16 @@ import com.ensar.tmdbkotlin.databinding.ItemMovieBinding
 import com.ensar.tmdbkotlin.db.entities.Genre
 import com.ensar.tmdbkotlin.db.entities.Movie
 
-class MovieViewHolder(private val itemBinding: ItemMovieBinding)
-    : RecyclerView.ViewHolder(itemBinding.root) {
+class MovieViewHolder(private val itemBinding: ItemMovieBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
     companion object {
         fun create(parent: ViewGroup): MovieViewHolder {
-            val binding = DataBindingUtil.inflate<ItemMovieBinding>(
+            return MovieViewHolder(DataBindingUtil.inflate(
                     LayoutInflater.from(parent.context),
-                    R.layout.item_movie, parent, false)
-            return MovieViewHolder(binding)
+                    R.layout.item_movie,
+                    parent,
+                    false
+            ))
         }
     }
 
@@ -28,11 +29,11 @@ class MovieViewHolder(private val itemBinding: ItemMovieBinding)
         itemBinding.executePendingBindings()
         var genreText = ""
         if (genres != null) {
-            item.genreIds.forEachIndexed { index, genreId ->
+            item.genreIds?.forEachIndexed { index, genreId ->
                 genreText += genres.find {
                     it.id == genreId
                 }?.name
-                if (index != item.genreIds.size - 1) {
+                if (index != item.genreIds?.size!! - 1) {
                     genreText += ", "
                 }
 

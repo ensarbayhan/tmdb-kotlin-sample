@@ -6,14 +6,15 @@ import com.ensar.tmdbkotlin.db.remote.AppService
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
-import javax.inject.Inject
 
-class GenreRepository @Inject constructor(private val remote: AppService, private val local: AppDatabase) {
+class GenreRepository(private val remote: AppService, private val local: AppDatabase) {
 
     fun getGenres(): Observable<List<Genre>> {
         return Observable.concatArray(
                 getGenresFromDb(),
-                getGenresFromApi()
+                getGenresFromApi().materialize()
+                        .filter { !it.isOnError }
+                        .dematerialize<List<Genre>>()
         )
     }
 

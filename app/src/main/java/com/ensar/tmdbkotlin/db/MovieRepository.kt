@@ -6,16 +6,17 @@ import com.ensar.tmdbkotlin.db.remote.AppService
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
-import javax.inject.Inject
 
 /**
  * Created by Ensar Bayhan on 9/18/2018.
  */
-class MovieRepository @Inject constructor(private val remote: AppService, private val local: AppDatabase) {
+class MovieRepository(private val remote: AppService, private val local: AppDatabase) {
     fun getMovies(): Observable<List<Movie>> {
         return Observable.concatArray(
                 getMoviesFromDb(),
-                getMoviesFromApi()
+                getMoviesFromApi().materialize()
+                        .filter { !it.isOnError }
+                        .dematerialize<List<Movie>>()
         )
     }
 
@@ -25,7 +26,7 @@ class MovieRepository @Inject constructor(private val remote: AppService, privat
                 .doOnNext {
                     Timber.d("Dispatching ${it.size} from DB...")
                 }.doOnError {
-                    Timber.d("Error!!!!%s", it.message)
+                    Timber.d("Error!!!!${it.message}")
                 }
     }
 
@@ -36,17 +37,17 @@ class MovieRepository @Inject constructor(private val remote: AppService, privat
                     Timber.d("Dispatching ${it.size} from API...")
                     storeMoviesInDb(it)
                 }.doOnError {
-                    Timber.d("Error!!!!%s", it.message)
+                    Timber.d("Error!!!! ${it.message}")
                 }
     }
 
     private fun storeMoviesInDb(movies: List<Movie>) {
+        movies.forEachIndexed { index, movie -> movie.orderId = index }
         Observable.fromCallable { local.movieDao().insertMovies(movies) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe {
                     Timber.d("Inserted ${movies.size} users from API in DB...")
                 }
-
     }
 }

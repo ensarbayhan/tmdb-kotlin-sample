@@ -9,7 +9,7 @@ import com.ensar.tmdbkotlin.db.entities.Movie
 import com.ensar.tmdbkotlin.db.local.dao.GenreDao
 import com.ensar.tmdbkotlin.db.local.dao.MovieDao
 
-@Database(entities = [(Movie::class), (Genre::class)], version = 1)
+@Database(entities = [Movie::class, Genre::class], version = 1, exportSchema = false)
 @TypeConverters(GenreTypeConverters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao

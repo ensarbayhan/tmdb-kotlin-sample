@@ -20,8 +20,7 @@ class MoviesViewModel(private val repository: MoviesRepository) : ViewModel() {
     val genresLiveData = MutableLiveData<List<Genre>>()
 
     init {
-        getMovies()
-        getGenres()
+        refreshData()
     }
 
     private fun getMovies() {
@@ -44,5 +43,11 @@ class MoviesViewModel(private val repository: MoviesRepository) : ViewModel() {
 
     override fun onCleared() {
         disposable.dispose()
+    }
+
+    fun refreshData() {
+        disposable.clear()
+        getGenres()
+        getMovies()
     }
 }

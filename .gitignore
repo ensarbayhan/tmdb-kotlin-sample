@@ -8,6 +8,7 @@
 /captures
 .externalNativeBuild
 
+.idea/
 .idea/libraries/
 .idea/workspace.xml
 .idea/tasks.xml

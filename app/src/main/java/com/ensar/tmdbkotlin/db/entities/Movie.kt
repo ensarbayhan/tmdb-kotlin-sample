@@ -1,5 +1,6 @@
 package com.ensar.tmdbkotlin.db.entities
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
@@ -13,7 +14,7 @@ import com.google.gson.annotations.SerializedName
 
 @Entity()
 data class Movie(
-        @PrimaryKey
+        @PrimaryKey()
         @SerializedName("id")
         @Expose
         var id: Int?,
@@ -29,7 +30,10 @@ data class Movie(
         @SerializedName("genre_ids")
         @Expose
         @TypeConverters(GenreTypeConverters::class)
-        var genreIds: List<Int>,
+        var genreIds: List<Int>?,
+
+        @Expose(serialize = false)
+        var genres: String?,
 
         @SerializedName("backdrop_path")
         @Expose
@@ -45,4 +49,7 @@ data class Movie(
 
         @SerializedName("poster_path")
         @Expose
-        var posterPath: String?)
+        var posterPath: String?,
+
+        @ColumnInfo(name = "orderId")
+        var orderId: Int )

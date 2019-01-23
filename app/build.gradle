@@ -52,21 +52,18 @@ dependencies {
 
     //supportLib
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'com.google.android.material:material:1.1.0-alpha01'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.material:material:1.1.0-alpha02'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
 
     //timber
     implementation "com.jakewharton.timber:timber:$timberVersion"
 
-    //Dagger 2
-    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
-    implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
-    kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
+    // Koin
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
     //rx
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
@@ -84,30 +81,27 @@ dependencies {
     //picasso
     implementation "com.squareup.picasso:picasso:$picassoVersion"
 
-    //coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
-
     //arch-comp Lifecycles, LiveData, and ViewModel
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.0.0'
     kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
 
     //arch-comp Room
-    implementation 'androidx.room:room-runtime:2.1.0-alpha02'
-    implementation 'androidx.room:room-rxjava2:2.1.0-alpha02'
-    kapt 'androidx.room:room-compiler:2.1.0-alpha02'
+    implementation 'androidx.room:room-runtime:2.1.0-alpha03'
+    implementation 'androidx.room:room-rxjava2:2.1.0-alpha03'
+    kapt 'androidx.room:room-compiler:2.1.0-alpha03'
 
     //Paging
-    implementation 'androidx.paging:paging-runtime:2.1.0-beta01'
+    implementation 'androidx.paging:paging-runtime:2.1.0-rc01'
 
     // data binding
-    kapt "androidx.databinding:databinding-compiler:3.2.1"
+    kapt "androidx.databinding:databinding-compiler:3.3.0"
 
     //test
     testImplementation 'junit:junit:4.12'
     testImplementation 'androidx.arch.core:core-testing:2.0.0'
-    testImplementation 'androidx.room:room-testing:2.1.0-alpha02'
-    testImplementation 'androidx.paging:paging-common:2.1.0-beta01'
+    testImplementation 'androidx.room:room-testing:2.1.0-alpha03'
+    testImplementation 'androidx.paging:paging-common:2.1.0-rc01'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
 }

@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.ensar.tmdbkotlin.BuildConfig
 import com.squareup.picasso.Picasso
 
-@BindingAdapter("android:src")
+@BindingAdapter("android:imageUrl")
 fun ImageView.setImageUrl(url: String) {
     Picasso.get()
             .load(BuildConfig.IMAGE_URL + url)

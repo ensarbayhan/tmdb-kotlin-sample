@@ -14,7 +14,7 @@ import io.reactivex.Single
 @Dao
 interface MovieDao {
 
-    @Query("SELECT * FROM Movie")
+    @Query("SELECT * FROM Movie ORDER BY orderId")
     fun getMovies(): Single<List<Movie>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
